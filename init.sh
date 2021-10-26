@@ -1,10 +1,38 @@
 #!/bin/zsh
+
+# vars
+ZSH_RC=~/.zshrc
+BASH_RC=~/.bashrc
+SCRIPTS_URL=https://github.com/RWEngelbrecht/scripts/archive/refs/heads/usable.zip
+SCRIPTS_ZIP=scripts.zip
+SCRIPTS_DIR=$HOME/scripts
+
 #compile yarvis
 sudo go build -o /bin/yarvis .
 
+# check if unzip and wget installed
+# note: `2>/dev/null` quiets a warning. 
+#   Redirect (>) 2nd output channel (2 i.e. stderr) to /dev/null
+if ! apt list 2>/dev/null wget | grep -Fq "[installed]"; then
+  echo "wget not installed, installing now..."
+  sudo apt-get install wget
+fi
+if ! apt list 2>/dev/null unzip | grep -Fq "[installed]"; then
+  echo "unzip not installed, installing now..."
+  sudo apt-get install unzip
+fi
+
+# download scripts repo
+echo "Downloading scripts from $SCRIPTS_URL..."
+wget -q $SCRIPTS_URL -O $SCRIPTS_ZIP
+echo "Downloaded..."
+
+echo "Unzipping $SCRIPTS_ZIP..."
+unzip -q $SCRIPTS_ZIP -d $SCRIPTS_DIR
+rm $SCRIPTS_ZIP
+echo "Unzipped and cleaned up..."
+
 # add aliases
-ZSH_RC=~/.zshrc
-BASH_RC=~/.bashrc
 if [ ! -f "$ZSH_RC" ]; then
   touch .zshrc
 fi
