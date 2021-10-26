@@ -4,5 +4,5 @@ This will be the interface for all the small scripts and lesser CLIs.
 Additional functionality will also be built in.
 
 ## TODO
-- installation script
-- add appropriate aliases to ~/.*rc
+- integrate existing scripts
+- use Makefile for init, update, etc. rules

@@ -8,6 +8,7 @@ SCRIPTS_ZIP=scripts.zip
 SCRIPTS_DIR=$HOME/scripts
 
 #compile yarvis
+echo "Building Yarvis..."
 sudo go build -o /bin/yarvis .
 
 # check if unzip and wget installed
@@ -23,14 +24,16 @@ if ! apt list 2>/dev/null unzip | grep -Fq "[installed]"; then
 fi
 
 # download scripts repo
-echo "Downloading scripts from $SCRIPTS_URL..."
-wget -q $SCRIPTS_URL -O $SCRIPTS_ZIP
-echo "Downloaded..."
+if [ ! -d $SCRIPTS_DIR ]; then
+  echo "Downloading scripts from $SCRIPTS_URL..."
+  wget -q $SCRIPTS_URL -O $SCRIPTS_ZIP
+  echo "Downloaded..."
 
-echo "Unzipping $SCRIPTS_ZIP..."
-unzip -q $SCRIPTS_ZIP -d $SCRIPTS_DIR
-rm $SCRIPTS_ZIP
-echo "Unzipped and cleaned up..."
+  echo "Unzipping $SCRIPTS_ZIP..."
+  unzip -q $SCRIPTS_ZIP -d $SCRIPTS_DIR
+  rm $SCRIPTS_ZIP
+  echo "Unzipped and cleaned up..."
+fi
 
 # add aliases
 if [ ! -f "$ZSH_RC" ]; then
