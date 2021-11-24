@@ -6,3 +6,4 @@ Additional functionality will also be built in.
 ## TODO
 - integrate existing scripts
 - use Makefile for init, update, etc. rules
+- On first run, if no config file present, prompt for name
