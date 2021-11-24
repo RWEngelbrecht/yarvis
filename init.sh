@@ -9,7 +9,8 @@ SCRIPTS_DIR=$HOME/scripts
 
 #compile yarvis
 echo "Building Yarvis..."
-sudo go build -o /bin/yarvis .
+#possible that sudo doesn't have same path as user
+go build .
 
 # check if unzip and wget installed
 # note: `2>/dev/null` quiets a warning. 
@@ -45,13 +46,14 @@ fi
 
 # if no new line at end of rc file, this will break
 if ! grep -Fq "alias yarvis" $ZSH_RC; then
+  zepath=$(pwd)
   echo "Alias not found, adding to $ZSH_RC...\n"
-  echo 'alias yarvis="/bin/yarvis"' >> $ZSH_RC
+  echo "alias yarvis=$zepath/yarvis" >> $ZSH_RC
 fi
 
 if ! grep -Fq "alias yarvis" $BASH_RC; then
   echo "Alias not found, adding to $BASH_RC...\n"
-  echo 'alias yarvis="/bin/yarvis"' >> $BASH_RC
+  echo 'alias yarvis="/usr/local/bin/yarvis"' >> $BASH_RC
 fi
 
 echo "ACTION REQUIRED: \
