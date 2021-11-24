@@ -20,7 +20,6 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
-
 	"github.com/spf13/viper"
 )
 
@@ -45,14 +44,6 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
-
-	// EXECUTING EXTERNAL SCRIPTS
-	// c := exec.Command("/home/rwengelbrecht/scripts/hello.sh")
-	// if out, err := c.CombinedOutput(); err != nil {
-	// 	fmt.Printf("Error: %s\n", err)
-	// } else {
-	// 	fmt.Printf("Output: %s\n", out)
-	// }
 
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
