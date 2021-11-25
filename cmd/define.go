@@ -54,8 +54,10 @@ var defineCmd = &cobra.Command{
 		if err != nil {
 			h.OutputError("Something went wrong when reading the response body...")
 		}
+		// for k, v := range b.parseJSON(body) {
 
-		fmt.Println(body[0])
+		// }
+		fmt.Println(body)
 	},
 }
 
