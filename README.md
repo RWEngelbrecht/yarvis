@@ -13,3 +13,5 @@ Additional functionality will also be built in.
 - countdown timer
 - shell setup (aliases, install most-used tools, etc)
 - metronome
+- personal documentation lookup + author
+
