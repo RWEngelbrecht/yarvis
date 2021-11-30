@@ -1,5 +1,9 @@
 package helper
 
-func OutputError(msg string) {
-	panic(msg)
+import (
+	"errors"
+)
+
+func OutputError(errText string) {
+	panic(errors.New(errText).Error())
 }
