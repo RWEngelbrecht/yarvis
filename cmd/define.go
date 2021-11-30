@@ -24,8 +24,15 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func print_definitions() {
+// add structs for definition api response
 
+func getDefinitions(resBody []byte) {
+	// var defApiResponse = new(DefinitionAPIResponse)
+	// err := json.Unmarshal(resBody, &defApiResponse)
+	// if err != nil {
+	// 	helper.OutputError(err)
+	// }
+	// return defApiResponse
 }
 
 // defineCmd represents the define command
