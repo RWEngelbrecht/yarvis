@@ -16,6 +16,7 @@ limitations under the License.
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -25,13 +26,23 @@ import (
 )
 
 // add structs for definition api response
+type ResponseItems struct {
+	Word     string `json:"word"`
+	Phonetic string `json:"phonetic"`
+	// Phonetics []string `json:"phonetics"`
+}
+
+type DefinitionAPIResponse struct {
+	Response []ResponseItems
+}
 
 func getDefinitions(resBody []byte) {
-	// var defApiResponse = new(DefinitionAPIResponse)
-	// err := json.Unmarshal(resBody, &defApiResponse)
-	// if err != nil {
-	// 	helper.OutputError(err)
-	// }
+	var defApiResponse []ResponseItems
+	err := json.Unmarshal(resBody, &defApiResponse)
+	if err != nil {
+		h.OutputError(err.Error())
+	}
+	fmt.Println(defApiResponse)
 	// return defApiResponse
 }
 
@@ -61,10 +72,8 @@ var defineCmd = &cobra.Command{
 		if err != nil {
 			h.OutputError("Something went wrong when reading the response body...")
 		}
-		// for k, v := range b.parseJSON(body) {
-
-		// }
-		fmt.Println(body)
+		// fmt.Println(string(body))
+		getDefinitions(body)
 	},
 }
 
