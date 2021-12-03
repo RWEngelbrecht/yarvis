@@ -7,6 +7,8 @@ Additional functionality will also be built in.
 - integrate existing scripts
 - use Makefile for init, update, etc. rules
 - On first run, if no config file present, prompt for name
+- "interactive" mode
+- stdout colours
 
 ## TO ADD
 - dictionary
