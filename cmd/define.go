@@ -16,7 +16,6 @@ limitations under the License.
 package cmd
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -24,27 +23,6 @@ import (
 	h "github.com/RWEngelbrecht/yarvis/helper"
 	"github.com/spf13/cobra"
 )
-
-// add structs for definition api response
-type ResponseItems struct {
-	Word     string `json:"word"`
-	Phonetic string `json:"phonetic"`
-	// Phonetics []string `json:"phonetics"`
-}
-
-type DefinitionAPIResponse struct {
-	Response []ResponseItems
-}
-
-func getDefinitions(resBody []byte) {
-	var defApiResponse []ResponseItems
-	err := json.Unmarshal(resBody, &defApiResponse)
-	if err != nil {
-		h.OutputError(err.Error())
-	}
-	fmt.Println(defApiResponse)
-	// return defApiResponse
-}
 
 // defineCmd represents the define command
 var defineCmd = &cobra.Command{
@@ -61,7 +39,7 @@ var defineCmd = &cobra.Command{
 		// do some word validation
 
 		endpoint := "https://api.dictionaryapi.dev/api/v2/entries/en_GB/" + lookup_word
-		fmt.Println(endpoint)
+
 		res, err := http.Get(endpoint)
 		if err != nil {
 			h.OutputError("Something went wrong with the request...")
@@ -72,8 +50,9 @@ var defineCmd = &cobra.Command{
 		if err != nil {
 			h.OutputError("Something went wrong when reading the response body...")
 		}
-		// fmt.Println(string(body))
-		getDefinitions(body)
+		fmt.Println(body)
+		var responseItems interface{} = h.GetResponseItems(body)
+		h.OutputResponses(responseItems)
 	},
 }
 
