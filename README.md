@@ -9,6 +9,7 @@ Additional functionality will also be built in.
 - On first run, if no config file present, prompt for name
 - "interactive" mode
 - stdout colours
+- fix dict api update that broke definition lookup
 
 ## TO ADD
 - dictionary
