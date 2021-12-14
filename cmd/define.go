@@ -16,11 +16,11 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
 	"io/ioutil"
 	"net/http"
 
 	h "github.com/RWEngelbrecht/yarvis/helper"
+	t "github.com/RWEngelbrecht/yarvis/types"
 	"github.com/spf13/cobra"
 )
 
@@ -46,12 +46,13 @@ var defineCmd = &cobra.Command{
 			// try another api if this fails
 		}
 		defer res.Body.Close()
+
 		body, err := ioutil.ReadAll(res.Body)
 		if err != nil {
 			h.OutputError("Something went wrong when reading the response body...")
 		}
-		fmt.Println(body)
-		var responseItems interface{} = h.GetResponseItems(body)
+
+		var responseItems t.Response = h.GetResponseItems(body)
 		h.OutputResponses(responseItems)
 	},
 }

@@ -16,13 +16,12 @@ func noHitResponse(resBody []byte) types.NoHitResponse {
 	return apiNoHitResponse
 }
 
-func GetResponseItems(resBody []byte) []types.ResponseItem {
+func GetResponseItems(resBody []byte) types.Response {
 	var apiResponse []types.ResponseItem
 	err := json.Unmarshal(resBody, &apiResponse)
 	if err != nil {
-		noHitResponse(resBody)
+		return noHitResponse(resBody)
 	}
-
 	return apiResponse
 }
 
@@ -52,7 +51,8 @@ func printPhonetics(phonetics []types.PhoneticItem) {
 func OutputResponses(responseItems interface{}) {
 	switch responseItems.(type) {
 	case []types.ResponseItem:
-		for _, response := range responseItems {
+		respItems := responseItems.([]types.ResponseItem)
+		for _, response := range respItems {
 			fmt.Println(response.Word)
 			printPhonetics(response.Phonetics)
 			printMeanings(response.Meanings)
