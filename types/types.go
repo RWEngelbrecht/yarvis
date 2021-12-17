@@ -20,12 +20,17 @@ type Meaning struct {
 }
 
 // add structs for definition api response
-type ResponseItem struct {
+type DefinitionResponseItem struct {
 	Word      string         `json:"word"`
 	Phonetic  string         `json:"phonetic"`
 	Phonetics []PhoneticItem `json:"phonetics"`
 	Origin    string         `json:"origin"`
 	Meanings  []Meaning      `json:"meanings"`
+}
+
+type SynonymResponseItem struct {
+	Word     string    `json:"word"`
+	Meanings []Meaning `json:"meanings"`
 }
 
 type NoHitResponse struct {
