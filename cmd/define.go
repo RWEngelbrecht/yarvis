@@ -48,11 +48,12 @@ var defineCmd = &cobra.Command{
 		defer res.Body.Close()
 
 		body, err := ioutil.ReadAll(res.Body)
+
 		if err != nil {
 			h.OutputError("Something went wrong when reading the response body...")
 		}
 
-		var responseItems t.Response = h.GetResponseItems(body)
+		var responseItems t.Response = h.GetDefinitionResponseItems(body)
 		h.OutputResponses(responseItems)
 	},
 }
