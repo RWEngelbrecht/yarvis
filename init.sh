@@ -13,13 +13,13 @@ echo "Building Yarvis..."
 go build .
 
 # check if unzip and wget installed
-# note: `2>/dev/null` quiets a warning. 
+# note: `2>/dev/null` quiets a warning.
 #   Redirect (>) 2nd output channel (2 i.e. stderr) to /dev/null
 if ! apt list 2>/dev/null wget | grep -Fq "[installed]"; then
   echo "wget not installed, installing now..."
   sudo apt-get install wget
 fi
-if ! apt list 2>/dev/null unzip | grep -Fq "[installed]"; then
+if ! apt list 2>/dev/null unzip | grep "installed"; then
   echo "unzip not installed, installing now..."
   sudo apt-get install unzip
 fi
