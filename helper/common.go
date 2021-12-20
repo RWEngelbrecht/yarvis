@@ -3,7 +3,9 @@ package helper
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
+	"net/http"
 	"os"
 
 	c "github.com/RWEngelbrecht/yarvis/colours"
@@ -14,6 +16,23 @@ func OutputError(errText string) {
 	l := log.New(os.Stderr, "", 0)
 	l.Println(string(c.Red) + errText)
 	// panic(string(c.Red), errors.New(errText).Error())
+}
+
+func LookupWord(word string) []byte {
+	endpoint := "https://api.dictionaryapi.dev/api/v2/entries/en_GB/" + word
+	req, _ := http.NewRequest("GET", endpoint, nil)
+
+	res, err := http.DefaultClient.Do(req)
+	if err != nil {
+		OutputError(err.Error())
+	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		OutputError(err.Error())
+	}
+	return body
 }
 
 func noHitResponse(resBody []byte) types.NoHitResponse {

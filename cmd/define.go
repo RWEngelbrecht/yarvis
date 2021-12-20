@@ -16,9 +16,6 @@ limitations under the License.
 package cmd
 
 import (
-	"io/ioutil"
-	"net/http"
-
 	h "github.com/RWEngelbrecht/yarvis/helper"
 	t "github.com/RWEngelbrecht/yarvis/types"
 	"github.com/spf13/cobra"
@@ -38,20 +35,7 @@ var defineCmd = &cobra.Command{
 		lookup_word := args[0]
 		// do some word validation
 
-		endpoint := "https://api.dictionaryapi.dev/api/v2/entries/en_GB/" + lookup_word
-
-		res, err := http.Get(endpoint)
-		if err != nil {
-			h.OutputError("Something went wrong with the request...")
-			// try another api if this fails
-		}
-		defer res.Body.Close()
-
-		body, err := ioutil.ReadAll(res.Body)
-
-		if err != nil {
-			h.OutputError("Something went wrong when reading the response body...")
-		}
+		body := h.LookupWord(lookup_word)
 
 		var responseItems t.Response = h.GetDefinitionResponseItems(body)
 		h.OutputResponses(responseItems)
