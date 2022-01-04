@@ -12,9 +12,10 @@ import (
 
 // synonymCmd represents the synonym command
 var synonymCmd = &cobra.Command{
-	Use:   "synonym",
-	Short: "A brief description of your command",
-	Long:  ``,
+	Use:     "synonym",
+	Aliases: []string{"syn", "s"},
+	Short:   "synonym word",
+	Long:    ``,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		if len(args) != 1 {

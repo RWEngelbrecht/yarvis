@@ -23,9 +23,10 @@ import (
 
 // defineCmd represents the define command
 var defineCmd = &cobra.Command{
-	Use:   "define",
-	Short: "Define a given word.",
-	Long:  ``,
+	Use:     "define",
+	Aliases: []string{"def", "d"},
+	Short:   "define word",
+	Long:    ``,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		if len(args) != 1 {

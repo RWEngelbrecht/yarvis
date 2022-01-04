@@ -1,4 +1,4 @@
-package colours
+package flavour
 
 var Red = "\033[31m"
 var Green = "\033[32m"
