@@ -12,7 +12,7 @@ Additional functionality will also be built in.
 - fix dict api update that broke definition lookup
 
 ## TO ADD
-- dictionary
+- ~~dictionary~~
 - countdown timer
 - shell setup (aliases, install most-used tools, etc)
 - metronome
