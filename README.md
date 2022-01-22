@@ -17,4 +17,5 @@ Additional functionality will also be built in.
 - shell setup (aliases, install most-used tools, etc)
 - metronome
 - personal documentation lookup + author
+- serve local directory on localhost
 
